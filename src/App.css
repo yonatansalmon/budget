@@ -94,13 +94,6 @@ body,
   color: white;
 }
 
-.AddBtn > span,
-.MinusBtn > span {
-  display: inline-block;
-  height: 100%;
-  line-height: 1;
-}
-
 .MinusBtn {
   background-color: red;
 }
