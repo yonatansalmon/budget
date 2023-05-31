@@ -23,7 +23,7 @@ function TransactionModal() {
 
     try {
       const modifiedEntry = { ...balanceEntry, amount: balanceEntry.amount * -1 };
-      const { data } = await supabase.from('budget').insert(balanceEntry).select();
+      const { data } = await supabase.from('budget').insert(modifiedEntry).select();
       if (data && data.length > 0) {
         dispatch(setEntries([modifiedEntry, ...budget.entries]));
         dispatch(close());
