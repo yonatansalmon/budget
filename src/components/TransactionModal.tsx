@@ -3,18 +3,46 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { close, open } from '../redux/modalSlice';
-import { addEntry } from '../redux/budgetSlice';
+import { setEntries } from '../redux/budgetSlice';
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
+import { supabase } from '../db/supabase';
+import Btn from './Btn';
 
 function TransactionModal() {
-  const [balanceEntry, setBalanceEntry] = useState({ balance: 0, category: '' });
+  const [balanceEntry, setBalanceEntry] = useState({ amount: 0, category: '' });
   const modalState = useAppSelector((state) => state.modal);
+  const budget = useAppSelector((state) => state.budget);
   const dispatch = useAppDispatch();
 
-  const handleTransaction = () => {
-    if (modalState.selectedId) {
-      dispatch(addEntry(balanceEntry));
-    } else {
+  const handleChange = (e: React.ChangeEvent<any>) => {
+    setBalanceEntry({ ...balanceEntry, [e.currentTarget.name]: e.currentTarget.value });
+  };
+
+  const handleWithdrawal = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      const modifiedEntry = { ...balanceEntry, amount: balanceEntry.amount * -1 };
+      const { data } = await supabase.from('budget').insert(balanceEntry).select();
+      if (data && data.length > 0) {
+        dispatch(setEntries([modifiedEntry, ...budget.entries]));
+        dispatch(close());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeposit = async (e: any) => {
+    e.preventDefault();
+    try {
+      const { data } = await supabase.from('budget').insert(balanceEntry).select();
+      if (data && data.length > 0) {
+        dispatch(setEntries([balanceEntry, ...budget.entries]));
+        dispatch(close());
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -25,21 +53,19 @@ function TransactionModal() {
           <Modal.Title>Transaction</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Group className='mb-3' controlId='formBasicPassword'>
-            <Form.Select>
-              <option>Category</option>
-              <option value='1'>One</option>
-              <option value='2'>Two</option>
-              <option value='3'>Three</option>
-            </Form.Select>
-            <Form.Control type='number' placeholder='amount' className='Amount mt-3' />
-          </Form.Group>
+          <Form onSubmit={modalState.selectedId ? handleDeposit : handleWithdrawal}>
+            <Form.Group className='mb-3' controlId='formBasicPassword'>
+              <Form.Select name='category' onChange={handleChange} required>
+                <option value=''>Category</option>
+                <option value='house'>House</option>
+                <option value='food'>Food</option>
+                <option value='personal'>Personal</option>
+              </Form.Select>
+              <Form.Control type='number' placeholder='amount' name='amount' className='Amount mt-3' onChange={handleChange} required />
+            </Form.Group>
+            <Modal.Footer>{modalState.selectedId ? <Btn variant='primary' text='+' /> : <Btn variant='danger' text='-' />}</Modal.Footer>
+          </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant={modalState.selectedId ? 'primary' : 'danger' }  onClick={handleTransaction}>
-           {modalState.selectedId ? '+' : '-'}
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
