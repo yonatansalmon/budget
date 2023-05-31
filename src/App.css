@@ -1,0 +1,110 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.MainContainer {
+  height: 100%;
+  background-color: #504f4f;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+}
+.Spend,
+.Save {
+  width: 4rem !important;
+  height: 4rem !important;
+}
+.Spend,
+.Save,
+.Balance {
+  width: 40%;
+  height: 50%;
+  background-color: #2c2b2b;
+  border-radius: 8px;
+  padding: 20px;
+  transition: box-shadow 0.3s ease;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.Spend:hover,
+.Save:hover,
+.Balance {
+  box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+.MainContainer {
+  justify-content: space-around;
+  padding: 2rem;
+}
+
+.SpendandSave {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40;
+}
+
+.SpendandSave > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.BalanceContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Balance {
+  width: 70%;
+}
+
+.AddBtn,
+.MinusBtn {
+  border-radius: 50%;
+  background-color: #4ec530;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  cursor: pointer;
+  color: white;
+}
+
+.AddBtn > span,
+.MinusBtn > span {
+  display: inline-block;
+  height: 100%;
+  line-height: 1;
+}
+
+.MinusBtn {
+  background-color: red;
+}
+
+.TransactionsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+
+
+.modal-footer {
+  align-items: center;
+  justify-content:center
+}
