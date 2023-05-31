@@ -8,9 +8,9 @@ import { useEffect } from 'react';
 import { supabase } from './db/supabase';
 import { setEntries } from './redux/budgetSlice';
 import { useAppSelector, useAppDispatch } from './redux/hooks';
+import Reset from './components/Reset';
 
 function App() {
-  
   const dispatch = useAppDispatch();
   const getAllData: any = async () => {
     const { data, error }: any = await supabase.from('budget').select();
@@ -27,6 +27,7 @@ function App() {
 
   return (
     <div className='MainContainer'>
+      <Reset />
       <Budget />
       <Balance />
       <TransActions />

@@ -32,13 +32,13 @@ const budgetSlice = createSlice({
       state.total = action.payload.reduce((acc, curr) => acc + Number(curr.amount), 0);
       state.entries = action.payload;
     },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    // updateTotal: (state, action: PayloadAction<number>) => {
-    //   state.total += Number(action.payload);
-    // },
+    reset: (state) => {
+      state.total = 0
+      state.entries = []
+    },
   },
 });
 
-export const { setEntries } = budgetSlice.actions;
+export const { setEntries, reset } = budgetSlice.actions;
 export { budgetSlice };
 export default budgetSlice.reducer;
