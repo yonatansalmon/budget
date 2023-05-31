@@ -55,8 +55,8 @@ function TransactionModal() {
         <Modal.Body>
           <Form onSubmit={modalState.selectedId ? handleDeposit : handleWithdrawal}>
             <Form.Group className='mb-3' controlId='formBasicPassword'>
-              <Form.Control type='text' placeholder='category' name='category' className='Amount mt-3' onChange={handleChange} required />
-              <Form.Control type='number' placeholder='amount' name='amount' className='Amount mt-3' onChange={handleChange} required />
+              <Form.Control type='text' placeholder='Category' name='category' className='Amount mt-3' onChange={handleChange} required />
+              <Form.Control type='number' placeholder='Amount' name='amount' className='Amount mt-3' onChange={handleChange} required />
             </Form.Group>
             <Modal.Footer>{modalState.selectedId ? <Btn variant='primary' text='+' /> : <Btn variant='danger' text='-' />}</Modal.Footer>
           </Form>
