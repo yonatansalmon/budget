@@ -110,3 +110,9 @@ body,
   align-items: center;
   justify-content: center;
 }
+
+
+.modal-dialog {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
