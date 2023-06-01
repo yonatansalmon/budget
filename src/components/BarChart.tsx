@@ -75,9 +75,13 @@ const BarChart = () => {
   }, [budget.entries]);
 
   return (
-    <div className='BarCharContainer'>
-      <Bar options={options} data={data} className='BarChar'></Bar>
-    </div>
+    <>
+      {budget.entries.length > 0 && (
+        <div className='BarCharContainer'>
+          <Bar options={options} data={data} className='BarChar'></Bar>
+        </div>
+      )}
+    </>
   );
 };
 
