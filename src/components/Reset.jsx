@@ -27,7 +27,7 @@ const Reset = () => {
   };
   return (
     <Button className='mb-4 ResetBtn' onClick={handleDelete}>
-      Reset Budget
+      Reset Dashboard
     </Button>
   );
 };

@@ -41,13 +41,13 @@ const TableEntry: React.FC<Props> = ({ entry }) => {
     }
   };
 
-  const rowColor = entry.amount > 0 ? '#42c342' : 'red';
+  const rowColor = entry.amount > 0 ? '#0aff0a' : '#ff0000';
   return (
     <tr style={{ color: rowColor }}>
-      <td>{entry.amount}₪</td>
+      <td className='AmountCell'>{entry.amount}₪</td>
       <td>{entry.category}</td>
       <td>{getDate()}</td>
-      <td>
+      <td className='DeleteCell' >
         <div className='DeleteBtn' onClick={handleDelete}>
           &times;
         </div>

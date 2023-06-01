@@ -11,7 +11,7 @@ const Budget = () => {
       <h1>Balance</h1>
       <div className='Balance'>{budget.total}₪</div>
     </div>
-  );
-};
+  )
+}
 
 export default Budget;

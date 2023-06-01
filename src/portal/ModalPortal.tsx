@@ -7,9 +7,9 @@ const ModalPortal: React.FC = () => {
   const modalRoot: any = document.getElementById('modal-root');
 
   return (
-    <div>
-      {createPortal(<TransactionModal/>, modalRoot)};
-    </div>
+    <>
+      {createPortal(<TransactionModal/>, modalRoot)}
+    </>
   );
 };
 
