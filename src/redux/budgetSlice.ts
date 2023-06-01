@@ -37,17 +37,14 @@ const budgetSlice = createSlice({
       state.entries = [];
     },
     deleteEntry: (state, action: PayloadAction<string>) => {
-      console.log(state.entries)
-      console.log(action.payload)
-
-      state.entries = state.entries.filter((entry) =>{
-        console.log(entry.id, action.payload)
-        return entry.id !== action.payload});
+      const deletedArr = state.entries.filter((entry) => entry.id !== action.payload);
+      state.entries = deletedArr;
+      state.total = deletedArr.reduce((acc, curr) => acc + Number(curr.amount), 0);
     },
   },
 });
 
-export const { deleteEntry, setEntries, reset} = budgetSlice.actions;
+export const { deleteEntry, setEntries, reset } = budgetSlice.actions;
 export { budgetSlice };
-export type {Entries}
+export type { Entries };
 export default budgetSlice.reducer;

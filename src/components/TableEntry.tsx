@@ -32,7 +32,6 @@ const TableEntry: React.FC<Props> = ({ entry }) => {
   const handleDelete = async () => {
     try {
       const { status } = await supabase.from('budget').delete().match({ id: entry.id });
-      console.log(status)
       if (status === 204) {
         dispatch(deleteEntry(entry.id));
       }

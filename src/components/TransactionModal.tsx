@@ -51,10 +51,6 @@ function TransactionModal() {
     setBalanceEntry({ amount: 0, category: '' }); 
   };
 
-  useEffect(() => { 
-    console.log(balanceEntry)
-  }, [balanceEntry]);
-
   const getRandom = () => {
     const colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark'];
     const random = Math.floor(Math.random() * colors.length);
