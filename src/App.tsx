@@ -1,17 +1,15 @@
+import BudgetPage from './components/BudgetPage';
 import './App.css';
-import Budget from './components/Budget';
-import Balance from './components/Balance';
-
-import TransActions from './components/TransActions';
-import ModalPortal from './portal/ModalPortal';
+import { Routes, Route } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
 import { useEffect } from 'react';
 import { supabase } from './db/supabase';
 import { setEntries } from './redux/budgetSlice';
 import { useAppSelector, useAppDispatch } from './redux/hooks';
-import Reset from './components/Reset';
 
 function App() {
   const dispatch = useAppDispatch();
+
   const getAllData: any = async () => {
     const { data, error }: any = await supabase.from('budget').select();
     if (error) {
@@ -24,15 +22,11 @@ function App() {
   useEffect(() => {
     getAllData();
   }, []);
-
   return (
-    <div className='MainContainer'>
-      <Reset />
-      <Budget />
-      <Balance />
-      <TransActions />
-      <ModalPortal />
-    </div>
+    <Routes>
+      <Route path='/' element={<BudgetPage />} />
+      <Route path='/dashboard' element={<Dashboard />} />
+    </Routes>
   );
 }
 

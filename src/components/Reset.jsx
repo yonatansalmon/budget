@@ -7,6 +7,14 @@ import { supabase } from '../db/supabase';
 const Reset = () => {
   const dispatch = useDispatch();
 
+  const handleDelete = () => {
+    if (window.confirm('Delete?')) {
+      handleReset();
+    } else {
+      return;
+    }
+  };
+
   const handleReset = async () => {
     try {
       const { status } = await await supabase.from('budget').delete().neq('id', 0);
@@ -18,7 +26,7 @@ const Reset = () => {
     }
   };
   return (
-    <Button className='mb-4' onClick={handleReset}>
+    <Button className='mb-4 ResetBtn' onClick={handleDelete}>
       Reset Budget
     </Button>
   );

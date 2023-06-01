@@ -1,10 +1,12 @@
 import { useEffect, useMemo } from 'react';
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
-// import { increment } from '../redux/budgetSlice';
+import { close, open } from '../redux/modalSlice';
 
-const Budget = () => {
+const Budget  = () => {
   const budget = useAppSelector((state) => state.budget);
   const dispatch = useAppDispatch();
+
+
 
   const deposits = useMemo(() => {
     return budget.entries.filter((entry) => entry.amount > 0).reduce((acc: any, curr: any) => acc + Number(curr.amount), 0);
@@ -16,12 +18,12 @@ const Budget = () => {
 
   return (
     <div className='SpendandSave'>
-      <div>
-        <h2>Deposit</h2>
+      <div id='1' onClick={(e) => dispatch(open(e.currentTarget.id))}>
+        <h4>Deposit</h4>
         <div className='Deposit'>{deposits}₪</div>
       </div>
-      <div>
-        <h2>Withdrawal</h2>
+      <div id='0' onClick={(e) => dispatch(open(e.currentTarget.id))}>
+        <h4>Withdrawal</h4>
         <div className='Withdrawal'>{withdrawals}₪</div>
       </div>
     </div>

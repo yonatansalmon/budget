@@ -7,7 +7,7 @@
 html,
 body,
 #root,
-.MainContainer {
+.BudgetContainer {
   height: 100%;
   background-color: #504f4f;
   display: flex;
@@ -17,7 +17,8 @@ body,
 .Withdrawal,
 .Deposit {
   height: 4rem !important;
-  padding: 2.5rem !important;
+  padding: 1rem !important;
+  font-size: 1.5rem !important;
 }
 .Withdrawal,
 .Deposit,
@@ -48,9 +49,8 @@ body,
   box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.2);
 }
 
-.MainContainer {
+.BudgetContainer {
   justify-content: space-around;
-  padding: 2rem;
 }
 
 .SpendandSave {
@@ -71,13 +71,13 @@ body,
 .BalanceContainer {
   display: flex;
   color: beige;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
 }
 
 .Balance {
   width: 70%;
+  font-size: 2.2rem;
 }
 
 .AddBtn,
@@ -111,8 +111,72 @@ body,
   justify-content: center;
 }
 
+.LinkContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
 
-/* .modal-dialog {
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-} */
+.DashboardContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
+}
+
+.modal-footer {
+  display: flex;
+}
+
+.modal-footer > button {
+  flex: 1;
+  font-size: 2rem;
+}
+
+.TransactionForm input {
+  min-height: 3rem;
+}
+
+.TableContainer {
+  margin: 1.2rem;
+}
+
+.DashboardTable th {
+  color: beige;
+  text-align: center;
+}
+
+.DashboardTable td {
+  color: inherit !important;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.DashboardContainer button {
+  margin: 1.2rem;
+  margin-right: 0.3rem;
+}
+
+.DashboardTable .form-select {
+  padding: 2px;
+}
+
+.DeleteBtn {
+  margin: 0 !important;
+  width: 1.8rem;
+  height: 1.8rem;
+  padding: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  background-color: #000;
+  border: 2px solid #0d6efd;
+  color: red;
+  padding: 0;
+  font-size: 2rem;
+}
+
+.ResetBtn {
+  background-color: #7b1aa0;
+}

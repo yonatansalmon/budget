@@ -8,7 +8,7 @@ const Budget = () => {
 
   return (
     <div className='BalanceContainer'>
-      <h3>Balance</h3>
+      <h1>Balance</h1>
       <div className='Balance'>{budget.total}₪</div>
     </div>
   );

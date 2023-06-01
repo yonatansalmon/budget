@@ -8,6 +8,7 @@ import { supabase } from '../db/supabase';
 interface Entries {
   amount: number;
   category: string;
+  id: string;
 }
 interface BudgetState {
   entries: Array<Entries>;
@@ -28,17 +29,24 @@ const budgetSlice = createSlice({
   initialState,
   reducers: {
     setEntries: (state, action: PayloadAction<Entries[]>) => {
-      console.log(action.payload)
       state.total = action.payload.reduce((acc, curr) => acc + Number(curr.amount), 0);
       state.entries = action.payload;
     },
     reset: (state) => {
-      state.total = 0
-      state.entries = []
+      state.total = 0;
+      state.entries = [];
+    },
+    deleteEntry: (state, action: PayloadAction<string>) => {
+      console.log(state.entries)
+      console.log(action.payload)
+
+      state.entries = state.entries.filter((entry) =>{
+        console.log(entry.id, action.payload)
+        return entry.id !== action.payload});
     },
   },
 });
 
-export const { setEntries, reset } = budgetSlice.actions;
+export const { deleteEntry, setEntries, reset} = budgetSlice.actions;
 export { budgetSlice };
 export default budgetSlice.reducer;
