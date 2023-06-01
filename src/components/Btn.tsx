@@ -6,10 +6,10 @@ interface BtnProps {
   handleClick?: () => void;
   text: string;
 }
-const Btn = (props: BtnProps) => {
+const Btn: React.FC<BtnProps> = ( {variant, text}) => {
   return (
-    <Button type='submit' variant={props.variant}>
-      {props.text}
+    <Button type='submit' variant={variant}>
+      {text}
     </Button>
   );
 };

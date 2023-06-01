@@ -186,7 +186,6 @@ body,
   font-size: 1.3rem;
 }
 
-
 rect {
   fill: #504f4f;
 }
@@ -204,10 +203,14 @@ hr {
   text-align: center;
   font-size: 3rem;
   margin-top: 2rem;
-  color: #bababa
+  color: #bababa;
 }
 
 .BarCharContainer {
-  margin-top: 2rem; 
-  padding: 0 3rem
+  margin-top: 2rem;
+  padding: 0 3rem;
+}
+
+.CategoryBadge {
+  cursor: pointer;
 }
