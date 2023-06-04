@@ -48,7 +48,7 @@ function TransactionModal() {
       console.log(error);
     }
 
-    setBalanceEntry({ amount: 0, category: '' }); 
+    setBalanceEntry({ amount: 0, category: '' });
   };
 
   const getRandom = () => {
@@ -60,18 +60,26 @@ function TransactionModal() {
   return (
     <>
       <Modal show={modalState.show} onHide={() => dispatch(close())}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           {categories.map((category) => (
-          <CategoryBadge  setBalanceEntry={setBalanceEntry} category={category} color={getRandom()}  />
+            <CategoryBadge setBalanceEntry={setBalanceEntry} category={category} color={getRandom()} />
           ))}
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleTransAction} className='TransactionForm'>
             <Form.Group className='mb-3' controlId='formBasicPassword'>
-              <Form.Control type='text' value={balanceEntry.category} placeholder='Category' name='category' className='Amount mt-3' onChange={handleChange} required />
+              <Form.Control
+                type='text'
+                value={balanceEntry.category}
+                placeholder='Category'
+                name='category'
+                className='Amount mt-3'
+                onChange={handleChange}
+                required
+              />
               <Form.Control type='number' placeholder='Amount' name='amount' className='Amount mt-3' onChange={handleChange} required />
             </Form.Group>
-            <Modal.Footer>{modalState.selectedId ? <Btn variant='success' text='+' /> : <Btn variant='danger' text='-'  />}</Modal.Footer>
+            <Modal.Footer>{modalState.selectedId ? <Btn variant='success' text='+' /> : <Btn variant='danger' text='-' />}</Modal.Footer>
           </Form>
         </Modal.Body>
       </Modal>

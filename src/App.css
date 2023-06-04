@@ -215,3 +215,7 @@ hr {
 .CategoryBadge {
   cursor: pointer;
 }
+
+.PieChartContainer {
+  padding: 0.8rem;
+}

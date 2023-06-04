@@ -3,7 +3,8 @@ import Balance from '../components/Balance';
 import ModalPortal from '../portal/ModalPortal';
 
 import NavLink from './NavLink';
-import BarChart from './BarChart';
+import BarChart from './PieChart';
+import PieChart from './PieChart';
 
 const BudgetPage = () => {
   return (
@@ -12,7 +13,7 @@ const BudgetPage = () => {
       <Budget />
       <Balance />
       <ModalPortal />
-      <BarChart />
+      <PieChart />
     </div>
   );
 };

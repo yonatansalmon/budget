@@ -46,8 +46,13 @@ const TableEntry: React.FC<Props> = ({ entry }) => {
       <td className='AmountCell'>{entry.amount}₪</td>
       <td>{entry.category}</td>
       <td>{getDate()}</td>
-      <td className='DeleteCell' >
-        <div className='DeleteBtn' onClick={handleDelete}>
+      <td className='DeleteCell'>
+        <div
+          className='DeleteBtn'
+          onClick={() => {
+            if (window.confirm('Delete?')) handleDelete();
+          }}
+        >
           &times;
         </div>
       </td>

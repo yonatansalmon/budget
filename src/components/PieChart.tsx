@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PieController, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
 
 import { useAppSelector } from '../redux/hooks';
 
-const BarChart = () => {
+const PieChart = () => {
   const budget = useAppSelector((state) => state.budget);
   const [options, setOptions] = useState({});
 
@@ -31,28 +31,13 @@ const BarChart = () => {
         responsive: true,
         plugins: {
           legend: {
-            display: false,
+            position: 'bottom',
+            labels: {
+              color: 'white',
+            },
           },
           title: {
             display: false,
-          },
-        },
-        scales: {
-          x: {
-            grid: {
-              color: 'rgba(255, 255, 255, 0.5)',
-            },
-            ticks: {
-              color: 'white',
-            },
-          },
-          y: {
-            grid: {
-              color: 'rgba(255, 255, 255, 0.5)',
-            },
-            ticks: {
-              color: 'white',
-            },
           },
         },
       };
@@ -70,19 +55,20 @@ const BarChart = () => {
       setData(data);
       setOptions(options);
     };
-    ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+    ChartJS.register(CategoryScale, LinearScale, PieController, Title, Tooltip, Legend, ArcElement);
     createChart();
   }, [budget.entries]);
 
   return (
     <>
       {budget.entries.length > 0 && (
-        <div className='BarCharContainer'>
-          <Bar options={options} data={data} className='BarChar'></Bar>
+        <div className='PieChartContainer'>
+          <Pie options={options} data={data} className='PieChart'></Pie>
         </div>
       )}
     </>
   );
 };
 
-export default BarChart;
+export default PieChart;
