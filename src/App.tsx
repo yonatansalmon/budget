@@ -5,7 +5,7 @@ import Dashboard from './components/Dashboard';
 import { useEffect } from 'react';
 import { supabase } from './db/supabase';
 import { setEntries } from './redux/budgetSlice';
-import { useAppSelector, useAppDispatch } from './redux/hooks';
+import { useAppDispatch } from './redux/hooks';
 import { Entries } from './redux/budgetSlice';
 
 function App() {

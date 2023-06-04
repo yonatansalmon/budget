@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import { useAppSelector, useAppDispatch } from '../redux/hooks';
+import { useAppSelector } from '../redux/hooks';
 import TableEntry from './TableEntry';
 import NavLink from './NavLink';
 import Reset from './Reset';
-import EditEntry from './EditEntry';
 
 const Dashboard = () => {
   const budget = useAppSelector((state) => state.budget);
