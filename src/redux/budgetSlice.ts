@@ -41,10 +41,20 @@ const budgetSlice = createSlice({
       state.entries = deletedArr;
       state.total = deletedArr.reduce((acc, curr) => acc + Number(curr.amount), 0);
     },
+    editEntry: (state, action: PayloadAction<Entries>) => {
+      const editedArr = state.entries.map((entry) => { 
+        if(entry.id === action.payload.id) {
+          return action.payload
+        }else {
+          return entry
+        }
+      });
+      state.entries = editedArr;
+    }
   },
 });
 
-export const { deleteEntry, setEntries, reset } = budgetSlice.actions;
+export const { deleteEntry, setEntries, reset, editEntry } = budgetSlice.actions;
 export { budgetSlice };
 export type { Entries };
 export default budgetSlice.reducer;

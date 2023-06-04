@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { Modal, Form, Button, Badge } from 'react-bootstrap';
 import { close, open } from '../redux/modalSlice';
 import { setEntries } from '../redux/budgetSlice';
@@ -10,18 +10,23 @@ import CategoryBadge from './CategoryBadge';
 function TransactionModal() {
   const [balanceEntry, setBalanceEntry] = useState<any>({ amount: 0, category: '' });
   const [categories, setCategories] = useState<string[]>([]);
+  const [categoryColors, setCategoryColors] = useState<{ [category: string]: string }>({});
+
   const modalState = useAppSelector((state) => state.modal);
   const budget = useAppSelector((state) => state.budget);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const uniqueCategories: string[] = [];
+    const newCategoryColors: { [category: string]: string } = {};
     budget.entries.forEach((entry) => {
       if (!uniqueCategories.includes(entry.category)) {
         uniqueCategories.push(entry.category);
+        newCategoryColors[entry.category] = getRandomColor(); // Assign a random color
       }
     });
     setCategories(uniqueCategories);
+    setCategoryColors(newCategoryColors); // Set the new colors
   }, [budget.entries]);
 
   const handleChange = (e: React.ChangeEvent<any>) => {
@@ -51,19 +56,26 @@ function TransactionModal() {
     setBalanceEntry({ amount: 0, category: '' });
   };
 
-  const getRandom = () => {
+  const getRandomColor = () => {
     const colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark'];
     const random = Math.floor(Math.random() * colors.length);
     return colors[random];
   };
 
+  const setCategory = useCallback(
+    (category: string) => {
+      setBalanceEntry({ ...balanceEntry, category });
+    },
+    [balanceEntry]
+  );
+
   return (
     <>
       <Modal show={modalState.show} onHide={() => dispatch(close())}>
         <Modal.Header>
-          {categories.map((category) => (
-            <CategoryBadge setBalanceEntry={setBalanceEntry} category={category} color={getRandom()} />
-          ))}
+          {categories.map((category, i) => (
+            <CategoryBadge key={i} setCategory={setCategory} category={category} color={categoryColors[category]} />
+            ))}
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleTransAction} className='TransactionForm'>

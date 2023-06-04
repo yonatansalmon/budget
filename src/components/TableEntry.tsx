@@ -1,9 +1,10 @@
-import React from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { supabase } from '../db/supabase';
 import { deleteEntry } from '../redux/budgetSlice';
+import EditEntry from './EditEntry';
 
 interface Entry {
   amount: number;
@@ -14,9 +15,12 @@ interface Entry {
 
 interface Props {
   entry: Entry;
+  setIsColumn: Dispatch<SetStateAction<boolean>>;
+  isColumn: boolean;
 }
 
-const TableEntry: React.FC<Props> = ({ entry }) => {
+const TableEntry: React.FC<Props> = ({ entry, setIsColumn, isColumn }) => {
+  const [isEdit, setIsEdit] = useState(false);
   const budget = useAppSelector((state) => state.budget);
   const dispatch = useAppDispatch();
 
@@ -40,23 +44,37 @@ const TableEntry: React.FC<Props> = ({ entry }) => {
     }
   };
 
+  const handleIsEdit = async () => {
+    setIsColumn(true);
+    setIsEdit(true);
+  };
+
   const rowColor = entry.amount > 0 ? '#0aff0a' : '#ff0000';
   return (
-    <tr style={{ color: rowColor }}>
-      <td className='AmountCell'>{entry.amount}₪</td>
-      <td>{entry.category}</td>
-      <td>{getDate()}</td>
-      <td className='DeleteCell'>
-        <div
-          className='DeleteBtn'
-          onClick={() => {
-            if (window.confirm('Delete?')) handleDelete();
-          }}
-        >
-          &times;
-        </div>
-      </td>
-    </tr>
+    <>
+      {!isEdit ? (
+        <tr style={{ color: rowColor }}>
+          <td className='AmountCell'>{entry.amount}₪</td>
+          <td>{entry.category}</td>
+          <td>{getDate()}</td>
+          {!isColumn && (
+            <td className='DeleteCell'>
+              <div
+                className='DeleteBtn'
+                onClick={() => {
+                  if (window.confirm('Delete?')) handleDelete();
+                }}
+              >
+                &times;
+              </div>
+            </td>
+          )}
+          <td onClick={handleIsEdit}>&#x270E;</td>
+        </tr>
+      ) : (
+        <EditEntry setIsEdit={setIsEdit} key={entry.id} entry={entry} isColumn={isColumn} setIsColumn={setIsColumn} />
+      )}
+    </>
   );
 };
 

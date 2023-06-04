@@ -183,9 +183,6 @@ body,
   margin: 2rem;
 }
 
-.AmountCell {
-  font-size: 1.3rem;
-}
 
 rect {
   fill: #504f4f;
@@ -223,4 +220,8 @@ hr {
 .modal-header {
   flex-wrap: wrap !important;
   justify-content: flex-start !important;
+}
+
+.EditBtn {
+  font-size: 1.3rem
 }
