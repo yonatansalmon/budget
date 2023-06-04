@@ -219,3 +219,8 @@ hr {
 .PieChartContainer {
   padding: 0.8rem;
 }
+
+.modal-header {
+  flex-wrap: wrap !important;
+  justify-content: flex-start !important;
+}
