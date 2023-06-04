@@ -23,7 +23,7 @@ const Dashboard = () => {
               <th>Category</th>
               <th>Date</th>
               <th></th>
-              {!isColumn && <th></th>}
+              {isColumn && <th></th>}
             </tr>
           </thead>
 

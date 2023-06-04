@@ -45,7 +45,7 @@ const TableEntry: React.FC<Props> = ({ entry, setIsColumn, isColumn }) => {
   };
 
   const handleIsEdit = async () => {
-    setIsColumn(true);
+    setIsColumn(false);
     setIsEdit(true);
   };
 
@@ -57,7 +57,7 @@ const TableEntry: React.FC<Props> = ({ entry, setIsColumn, isColumn }) => {
           <td className='AmountCell'>{entry.amount}₪</td>
           <td>{entry.category}</td>
           <td>{getDate()}</td>
-          {!isColumn && (
+          {isColumn && (
             <td className='DeleteCell'>
               <div
                 className='DeleteBtn'

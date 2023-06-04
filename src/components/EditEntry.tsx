@@ -50,7 +50,7 @@ const EditEntry: React.FC<Props> = ({ entry, setIsEdit, isColumn, setIsColumn })
       console.log(error);
     }
     setIsEdit(false);
-    setIsColumn(false);
+    setIsColumn(true);
   };
 
   const rowColor = entry.amount > 0 ? '#0aff0a' : '#ff0000';
