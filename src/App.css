@@ -183,7 +183,6 @@ body,
   margin: 2rem;
 }
 
-
 rect {
   fill: #504f4f;
 }
@@ -215,6 +214,10 @@ hr {
 
 .PieChartContainer {
   padding: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
 }
 
 .modal-header {
@@ -223,5 +226,10 @@ hr {
 }
 
 .EditBtn {
-  font-size: 1.3rem
+  font-size: 1.3rem;
+}
+
+.PieChartContainer > canvas {
+  height: 100% !important;
+
 }

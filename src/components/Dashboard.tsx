@@ -4,6 +4,7 @@ import { useAppSelector } from '../redux/hooks';
 import TableEntry from './TableEntry';
 import NavLink from './NavLink';
 import Reset from './Reset';
+import { Entries } from '../redux/budgetSlice';
 
 const Dashboard = () => {
   const budget = useAppSelector((state) => state.budget);
@@ -27,9 +28,11 @@ const Dashboard = () => {
           </thead>
 
           <tbody>
-            {budget.entries.map((entry: any) => (
-              <TableEntry key={entry.id} entry={entry} setIsColumn={setIsColumn} isColumn={isColumn} />
-            ))}
+            {[...budget.entries]
+              .sort((a: Entries, b: Entries) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+              .map((entry: any) => (
+                <TableEntry key={entry.id} entry={entry} setIsColumn={setIsColumn} isColumn={isColumn} />
+              ))}
           </tbody>
         </Table>
       </div>

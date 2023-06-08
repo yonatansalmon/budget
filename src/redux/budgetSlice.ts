@@ -9,6 +9,7 @@ interface Entries {
   amount: number;
   category: string;
   id: string;
+  created_at: string;
 }
 interface BudgetState {
   entries: Array<Entries>;
